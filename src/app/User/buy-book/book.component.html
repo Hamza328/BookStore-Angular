@@ -1,0 +1,41 @@
+
+<div class="container overflow-hidden">
+  <div class="alert alert-success" *ngIf="infoMessage">
+    {{infoMessage}}
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4"
+     *ngFor="let book of Books"
+    >
+      <div class="card mt-2 " style="width: 13rem">
+        <img src="../../../assets/book.jpg" class="card-img-top" style="height:150px" alt="book">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            {{book.price | currency: 'USD'}}
+          </h6>
+          <p class="card-text text-nowrap overflow-hidden" style="text-overflow: ellipsis">{{book.description}}</p>
+          <a class="btn btn-primary" (click)="BuyBook(book.id!,book.price)">Buy</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- <div class="card-body">
+  <h5 class="card-title">asas</h5>
+  <h6 class="card-subtitle mb-2 text-muted">
+    {{item.price | currency: 'USD'}}
+    asasa
+  </h6>
+  <p class="card-text">
+    asas
+  </p>
+  <button
+          class="btn w-50 mt-3"
+          style="background-color: mediumseagreen;">
+    Buy
+  </button>
+</div> -->

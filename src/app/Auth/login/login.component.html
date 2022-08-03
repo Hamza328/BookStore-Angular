@@ -1,0 +1,85 @@
+<div class="row">
+  <div
+    class="col-xs-12 col-md-6 col-md-offset-3 m-auto border border-1 rounded-3 bg-light mt-2"
+  >
+    <div
+      class="alert alert-danger mt-1 alert-dismissible fade show"
+      *ngIf="error"
+    >
+      {{ error }}
+      <button
+        type="button"
+        class="btn-close"
+        (click)="removeError()"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <h1 class="text-center mb-4 mt-2 display-4 fst-italic fw-bold">
+      {{ isLoginMode ? "Login" : "SignUp" }}
+    </h1>
+    <form class="p-3" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="username"
+          ngModel
+          name="username"
+          required
+          #username="ngModel"
+        />
+        <span
+          class="mt-1 ms-1 text-danger"
+          *ngIf="!username.valid && username.touched"
+          ><small> Enter username </small></span
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="password"
+          ngModel
+          name="password"
+          required
+          minlength="4"
+          #password="ngModel"
+        />
+        <div
+          class="mt-1 ms-1 text-danger"
+          *ngIf="!password.valid && password.touched"
+        >
+          <div *ngIf="password.errors?.required">
+            <span>password is required</span>
+          </div>
+          <div *ngIf="password.errors?.minlength">
+            <span>Password must be 4 character</span>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" >
+        <label class="form-check-label" >Check me out</label>
+      </div> -->
+      <div class="text-center">
+        <button
+          [disabled]="!authForm.valid"
+          type="submit"
+          class="btn btn-primary"
+        >
+          {{ isLoginMode ? "Login" : "SignUp" }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary ms-1"
+          (click)="onSwitchMode(authForm)"
+        >
+          Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

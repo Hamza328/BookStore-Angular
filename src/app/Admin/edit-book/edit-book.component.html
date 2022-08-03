@@ -1,0 +1,105 @@
+
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3 m-auto border border-1 rounded-3  bg-light mt-2">
+    <div class="alert alert-danger mt-1 alert-dismissible fade show"
+    *ngIf="errorMessage"
+  > {{errorMessage}}
+  <button type="button" class="btn-close"  data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    <h1 class="text-center mb-4 mt-2 display-6 fst-italic fw-bold">{{editMode? 'Update Book':'Create Book'}}</h1>
+    <form class="p-3"  #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+
+      <div class="form-group mb-3">
+        <label  class="form-label">Title</label>
+        <input
+         type="text"
+         class="form-control"
+         placeholder="Title"
+         ngModel
+         name="title"
+         required
+         #title="ngModel"
+         >
+         <div
+         class="mt-1 ms-1   text-danger"
+         *ngIf="!title.valid && title.touched"
+         >
+          <div *ngIf="title.errors?.required">
+            <span>password is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label  class="form-label">author</label>
+        <input
+         type="text"
+         class="form-control"
+         placeholder="author"
+         ngModel
+         name="author"
+         required
+         #author="ngModel"
+         >
+         <div
+         class="mt-1 ms-1   text-danger"
+         *ngIf="!author.valid && author.touched"
+         >
+          <div *ngIf="author.errors?.required">
+            <span>password is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label  class="form-label">price</label>
+        <input
+         type="text"
+         class="form-control"
+         placeholder="price"
+         ngModel
+         name="price"
+         required
+         #price="ngModel"
+         >
+         <div
+         class="mt-1 ms-1   text-danger"
+         *ngIf="!price.valid && price.touched"
+         >
+          <div *ngIf="price.errors?.required">
+            <span>password is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label  class="form-label">description</label>
+        <input
+         type="text"
+         class="form-control"
+         placeholder="description"
+         ngModel
+         name="description"
+         required
+         #description="ngModel"
+         >
+         <div
+         class="mt-1 ms-1   text-danger"
+         *ngIf="!description.valid && description.touched"
+         >
+          <div *ngIf="description.errors?.required">
+            <span>password is required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button [disabled]="!bookForm.valid" type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary ms-1" (click)="goBack()"> Go Back
+        </button>
+
+      </div>
+    </form>
+
+  </div>
+</div>
